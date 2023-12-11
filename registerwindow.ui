@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>registerWindow</class>
+ <widget class="QMainWindow" name="registerWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>479</width>
+    <height>485</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>411</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>price</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>amount</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>expiration date</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>banana</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>150000</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>69</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>30</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>479</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionADD"/>
+   <addaction name="actionRemove"/>
+  </widget>
+  <action name="actionADD">
+   <property name="icon">
+    <iconset theme="applications-science">
+     <normaloff>C:/Qt/Examples/Qt-6.6.0/embedded/styleexample/files/add.png</normaloff>C:/Qt/Examples/Qt-6.6.0/embedded/styleexample/files/add.png</iconset>
+   </property>
+   <property name="text">
+    <string>ADD</string>
+   </property>
+   <property name="toolTip">
+    <string>Adds new item</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="icon">
+    <iconset>
+     <normaloff>C:/Qt/Examples/Qt-6.6.0/embedded/styleexample/files/remove.png</normaloff>C:/Qt/Examples/Qt-6.6.0/embedded/styleexample/files/remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Removes an item</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

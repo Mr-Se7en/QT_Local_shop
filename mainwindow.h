@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include <QCloseEvent>
+
+//#include "registerwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -13,7 +17,13 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void closeEvent (QCloseEvent *event) override;
     ~MainWindow();
+
+private slots:
+    void on_ExitButton_clicked();
+
+    void on_RegisterMenuButton_clicked();
 
 private:
     Ui::MainWindow *ui;
