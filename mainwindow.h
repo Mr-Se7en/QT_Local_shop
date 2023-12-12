@@ -25,6 +25,10 @@ private slots:
 
     void on_RegisterMenuButton_clicked();
 
+    void on_InventoryMenuButton_clicked();
+
+    void on_LogMenuButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "inventorywindow.h"
+#include "logwindow.h"
 #include "registerwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -55,6 +57,24 @@ void MainWindow::on_RegisterMenuButton_clicked()
     auto *register_menu=new registerWindow(this);
     register_menu->Parent_pointer_set(this);
     register_menu->show();
+    hide();
+}
+
+
+void MainWindow::on_InventoryMenuButton_clicked()
+{
+    auto *inventory_menu=new inventoryWindow(this);
+    inventory_menu->Parent_pointer_set(this);
+    inventory_menu->show();
+    hide();
+}
+
+
+void MainWindow::on_LogMenuButton_clicked()
+{
+    auto *log_menu=new LogWindow(this);
+    log_menu->Parent_pointer_set(this);
+    log_menu->show();
     hide();
 }
 

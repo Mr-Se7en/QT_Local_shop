@@ -11,7 +11,7 @@ registerWindow::registerWindow(QWidget *parent) :
 registerWindow::~registerWindow()
 {
     delete ui;
-    delete parent_pointer;
+//    delete parent_pointer;
 
 }
 void registerWindow::closeEvent(QCloseEvent *event)

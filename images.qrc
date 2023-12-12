@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/Icons/icons8-add-48.png</file>
+        <file>Images/Icons/icons8-add-96.png</file>
+        <file>Images/Icons/icons8-edit-48.png</file>
+        <file>Images/Icons/icons8-edit-96.png</file>
+        <file>Images/Icons/icons8-minus-48.png</file>
+        <file>Images/Icons/icons8-minus-96.png</file>
+        <file>Images/Icons/icons8-delete-48.png</file>
+        <file>Images/Icons/icons8-delete-96.png</file>
+        <file>Images/Icons/icons8-done-48.png</file>
+        <file>Images/Icons/icons8-done-96.png</file>
+        <file>Images/Icons/icons8-ok-48.png</file>
+        <file>Images/Icons/icons8-ok-96.png</file>
+        <file>Images/Icons/icons8-buy-48.png</file>
+        <file>Images/Icons/icons8-buy-96.png</file>
+        <file>Images/Icons/icons8-package-47.png</file>
+        <file>Images/Icons/icons8-package-94.png</file>
+    </qresource>
+</RCC>

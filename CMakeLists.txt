@@ -29,6 +29,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         order.h order.cpp
         order_items.h order_items.cpp
         registerwindow.h registerwindow.cpp registerwindow.ui
+
+        images.qrc
+        inventorywindow.h inventorywindow.cpp inventorywindow.ui
+        logwindow.h logwindow.cpp logwindow.ui
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET QT_Local_shop APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

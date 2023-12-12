@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>registerWindow</class>
- <widget class="QMainWindow" name="registerWindow">
+ <class>inventoryWindow</class>
+ <widget class="QMainWindow" name="inventoryWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>471</width>
-    <height>351</height>
+    <height>348</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="maximumSize">
    <size>
@@ -88,17 +82,12 @@
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QStatusBar" name="statusbar">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -108,26 +97,24 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionADD"/>
-   <addaction name="actionRemove"/>
-   <addaction name="actionEdit"/>
+   <addaction name="actionAdd_inventory"/>
+   <addaction name="actionRemove_inventory"/>
    <addaction name="separator"/>
-   <addaction name="actionConfirm_order"/>
-   <addaction name="actionDiscard"/>
+   <addaction name="actionRestock_inventory"/>
   </widget>
-  <action name="actionADD">
+  <action name="actionAdd_inventory">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/Images/Icons/icons8-add-96.png</normaloff>:/Images/Icons/icons8-add-96.png</iconset>
    </property>
    <property name="text">
-    <string>ADD</string>
+    <string>Add</string>
    </property>
    <property name="toolTip">
-    <string>Add a new item</string>
+    <string>Add an item</string>
    </property>
   </action>
-  <action name="actionRemove">
+  <action name="actionRemove_inventory">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/Images/Icons/icons8-minus-96.png</normaloff>:/Images/Icons/icons8-minus-96.png</iconset>
@@ -139,40 +126,16 @@
     <string>Remove an item</string>
    </property>
   </action>
-  <action name="actionEdit">
+  <action name="actionRestock_inventory">
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/Images/Icons/icons8-edit-96.png</normaloff>:/Images/Icons/icons8-edit-96.png</iconset>
+     <normaloff>:/Images/Icons/icons8-package-94.png</normaloff>:/Images/Icons/icons8-package-94.png</iconset>
    </property>
    <property name="text">
-    <string>Edit</string>
+    <string>Restock</string>
    </property>
    <property name="toolTip">
-    <string>Edit an item</string>
-   </property>
-  </action>
-  <action name="actionConfirm_order">
-   <property name="icon">
-    <iconset resource="images.qrc">
-     <normaloff>:/Images/Icons/icons8-buy-96.png</normaloff>:/Images/Icons/icons8-buy-96.png</iconset>
-   </property>
-   <property name="text">
-    <string>Confirm order</string>
-   </property>
-   <property name="toolTip">
-    <string>Finalize order</string>
-   </property>
-  </action>
-  <action name="actionDiscard">
-   <property name="icon">
-    <iconset resource="images.qrc">
-     <normaloff>:/Images/Icons/icons8-delete-96.png</normaloff>:/Images/Icons/icons8-delete-96.png</iconset>
-   </property>
-   <property name="text">
-    <string>Discard</string>
-   </property>
-   <property name="toolTip">
-    <string>Discard current order</string>
+    <string>Restock an existing item</string>
    </property>
   </action>
  </widget>
