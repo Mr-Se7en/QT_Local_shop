@@ -1,0 +1,3 @@
+Product Name, ID, Price, Quantity, Type, Expiration Date
+Product1, P001, 10.99, 50, Electronics, 2023-12-31
+Product2, P002, 19.99, 30, Clothing, 2023-11-30

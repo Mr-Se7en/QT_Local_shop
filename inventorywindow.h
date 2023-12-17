@@ -5,6 +5,9 @@
 #include <QMainWindow>
 
 #include "mainwindow.h"
+
+#include "producttablemodel.h"
+
 namespace Ui {
 class inventoryWindow;
 }
@@ -19,9 +22,13 @@ public:
 
     void Parent_pointer_set(MainWindow *a){parent_pointer=a;};
     void closeEvent(QCloseEvent *event) override;
+private slots:
+    void on_actionAdd_inventory_triggered();
+
 private:
     Ui::inventoryWindow *ui;
     MainWindow *parent_pointer=nullptr;
+    ProductTableModel *modelPTR=nullptr;
 };
 
 #endif // INVENTORYWINDOW_H

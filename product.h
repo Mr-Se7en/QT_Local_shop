@@ -1,31 +1,31 @@
-#include <string>
-using namespace std;
+
 #ifndef PRODUCT_H
 #define PRODUCT_H
-
+#include <QString>
+using namespace Qt;
 class PRODUCT
 {
 public:
     PRODUCT();
-    PRODUCT(string, string, double, int, string, string);
+    PRODUCT(QString, QString, double, int, QString, QString);
     // getters------------------------------------------------
-    string getproductName() const { return productName; };
-    string getId() const { return productID; };
+    QString getproductName() const { return productName; };
+    QString getId() const { return productID; };
     double getPrice() const { return price; };
     int getQuantity() const { return quantity; };
-    string getType() const { return productType; };
-    string getExpirationDate() const { return expiration_date; };
+    QString getType() const { return productType; };
+    QString getExpirationDate() const { return expiration_date; };
     // setters------------------------------------------------
     void setPrice(double p) { price = p; };
     void setQuantity(int q) { quantity = q; };
 
 private:
-    string productName;
-    string productID;
+    QString productName;
+    QString productID;
     double price;
     int quantity;
-    string productType;
-    string expiration_date;
+    QString productType;
+    QString expiration_date;
 };
 
 #endif // PRODUCT_H
