@@ -201,3 +201,31 @@ void ProductTableModel::loadFromFile(const QString &fileName)
 
 }
 
+bool ProductTableModel::removeProduct(int row)
+{
+    if (row < 0 || row >= productList.size())
+        return false;
+
+    beginRemoveRows(QModelIndex(), row, row); // Notify views that rows are about to be removed
+
+    // Remove the product from the vector
+    productList.removeAt(row);
+
+    endRemoveRows(); // Notify views that rows have been removed
+
+    return true;
+}
+
+PRODUCT ProductTableModel::getProduct(int row) const
+{
+    if (row >= 0 && row < productList.size())
+    {
+        return productList.at(row);
+    }
+    else
+    {
+        // Handle invalid row index
+        return PRODUCT(); // Assuming PRODUCT has a default constructor
+    }
+}
+

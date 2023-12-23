@@ -35,9 +35,14 @@ public:
     void setProductList(const QVector<PRODUCT> &products);
     bool updateProduct(int row, const PRODUCT &product);
     void addProduct(const PRODUCT &product);
+    bool removeProduct(int row);
 
     void saveToFile(const QString &fileName);
     void loadFromFile(const QString &fileName);
+
+    PRODUCT getProduct(int row) const;
+
+
 private:
     QVector<PRODUCT> productList;
 };

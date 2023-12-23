@@ -12,7 +12,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>471</width>
+    <width>16777215</width>
     <height>16777215</height>
    </size>
   </property>
@@ -54,6 +54,7 @@
    <addaction name="actionAdd_inventory"/>
    <addaction name="actionRemove_inventory"/>
    <addaction name="separator"/>
+   <addaction name="actionEditInventory"/>
    <addaction name="actionRestock_inventory"/>
   </widget>
   <action name="actionAdd_inventory">
@@ -90,6 +91,18 @@
    </property>
    <property name="toolTip">
     <string>Restock an existing item</string>
+   </property>
+  </action>
+  <action name="actionEditInventory">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/Images/Icons/icons8-edit-96.png</normaloff>:/Images/Icons/icons8-edit-96.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit an item</string>
    </property>
   </action>
  </widget>

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    inventoryModel = new ProductTableModel(this);
 }
 
 MainWindow::~MainWindow()
@@ -54,7 +55,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 
 void MainWindow::on_RegisterMenuButton_clicked()
 {
-    auto *register_menu=new registerWindow(this);
+    auto *register_menu=new registerWindow();
     register_menu->Parent_pointer_set(this);
     register_menu->show();
     hide();
@@ -63,7 +64,7 @@ void MainWindow::on_RegisterMenuButton_clicked()
 
 void MainWindow::on_InventoryMenuButton_clicked()
 {
-    auto *inventory_menu=new inventoryWindow(this);
+    auto *inventory_menu=new inventoryWindow(inventoryModel);
     inventory_menu->Parent_pointer_set(this);
     inventory_menu->show();
     hide();

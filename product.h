@@ -18,7 +18,9 @@ public:
     // setters------------------------------------------------
     void setPrice(double p) { price = p; };
     void setQuantity(int q) { quantity = q; };
-
+    PRODUCT operator+(PRODUCT &obj);
+    PRODUCT operator-(PRODUCT &obj);
+    bool operator==(const PRODUCT& B);
 private:
     QString productName;
     QString productID;

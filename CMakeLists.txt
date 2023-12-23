@@ -34,6 +34,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         inventorywindow.h inventorywindow.cpp inventorywindow.ui
         logwindow.h logwindow.cpp logwindow.ui
         producttablemodel.h producttablemodel.cpp
+        invevntoryaddproductdialog.h invevntoryaddproductdialog.cpp invevntoryaddproductdialog.ui
+        inventoryrestockdlg.h inventoryrestockdlg.cpp inventoryrestockdlg.ui
 
 
     )
