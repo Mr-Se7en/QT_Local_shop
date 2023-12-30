@@ -25,7 +25,7 @@ PRODUCT PRODUCT::operator-(PRODUCT &B){
     else
         throw(std::invalid_argument("product mismatch"));
 }
-bool PRODUCT::operator==(const PRODUCT& B) {
+bool PRODUCT::operator==(const PRODUCT& B)const {
     PRODUCT A=*this;
     return A.productName == B.productName &&
            A.productID == B.productID &&

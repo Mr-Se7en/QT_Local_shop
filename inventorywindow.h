@@ -7,6 +7,7 @@
 #include "mainwindow.h"
 
 #include "producttablemodel.h"
+#include "qitemselectionmodel.h"
 
 namespace Ui {
 class inventoryWindow;
@@ -23,6 +24,8 @@ public:
     void Parent_pointer_set(MainWindow *a){parent_pointer=a;};
     void closeEvent(QCloseEvent *event) override;
     void setModelPTR(ProductTableModel *modelPTR){modelPTR=modelPTR;}
+public slots:
+    void onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 private slots:
     void on_actionAdd_inventory_triggered();
 

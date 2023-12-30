@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     inventoryModel = new ProductTableModel(this);
+    registerModel=new RegisterProductModel(this);
+    inventoryModel->loadFromFile("test2.csv");
 }
 
 MainWindow::~MainWindow()
@@ -55,7 +57,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 
 void MainWindow::on_RegisterMenuButton_clicked()
 {
-    auto *register_menu=new registerWindow();
+    auto *register_menu=new registerWindow(inventoryModel,registerModel);
     register_menu->Parent_pointer_set(this);
     register_menu->show();
     hide();

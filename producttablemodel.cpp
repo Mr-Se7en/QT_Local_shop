@@ -229,3 +229,15 @@ PRODUCT ProductTableModel::getProduct(int row) const
     }
 }
 
+int ProductTableModel::findProductIndex(const PRODUCT& product) const
+{
+    for (int i = 0; i < productList.size(); ++i)
+    {
+        if (productList.at(i) == product)
+        {
+            return i;
+        }
+    }
+
+    return -1; // Return -1 if the product is not found
+}

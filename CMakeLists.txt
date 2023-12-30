@@ -26,8 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         product.h product.cpp
         customer.h customer.cpp
         financial_info.h financial_info.cpp
-        order.h order.cpp
-        order_items.h order_items.cpp
+
+
         registerwindow.h registerwindow.cpp registerwindow.ui
 
         images.qrc
@@ -36,6 +36,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         producttablemodel.h producttablemodel.cpp
         invevntoryaddproductdialog.h invevntoryaddproductdialog.cpp invevntoryaddproductdialog.ui
         inventoryrestockdlg.h inventoryrestockdlg.cpp inventoryrestockdlg.ui
+        registeradddlg.h registeradddlg.cpp registeradddlg.ui
+        registerproductmodel.h registerproductmodel.cpp
+        deals_aggregator.h deals_aggregator.cpp
 
 
     )

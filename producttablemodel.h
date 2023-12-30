@@ -42,6 +42,8 @@ public:
 
     PRODUCT getProduct(int row) const;
 
+    int findProductIndex(const PRODUCT& product)const;
+
 
 private:
     QVector<PRODUCT> productList;

@@ -20,7 +20,7 @@ public:
     void setQuantity(int q) { quantity = q; };
     PRODUCT operator+(PRODUCT &obj);
     PRODUCT operator-(PRODUCT &obj);
-    bool operator==(const PRODUCT& B);
+    bool operator==(const PRODUCT& B)const;
 private:
     QString productName;
     QString productID;

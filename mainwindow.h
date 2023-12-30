@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "producttablemodel.h"
+#include "registerproductmodel.h"
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QCloseEvent>
@@ -33,5 +34,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     ProductTableModel *inventoryModel;
+    RegisterProductModel *registerModel;
 };
 #endif // MAINWINDOW_H

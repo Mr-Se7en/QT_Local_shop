@@ -12,8 +12,8 @@ inventoryWindow::inventoryWindow(ProductTableModel *model,QWidget *parent) :
     ui->setupUi(this);
     ui->tableView->setModel(modelPTR);
     ui->tableView->update();
-    ui->centralwidget->adjustSize();
     connect(ui->tableView, &QTableView::clicked, this, &inventoryWindow::onItemClicked);
+    connect(ui->tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &inventoryWindow::onSelectionChanged);
 }
 
 inventoryWindow::~inventoryWindow()
@@ -38,7 +38,6 @@ void inventoryWindow::on_actionAdd_inventory_triggered()
         PRODUCT newProduct = addProductDialog.getProduct();
         modelPTR->addProduct(newProduct);
     }
-    ui->centralwidget->adjustSize();
 }
 
 
@@ -51,8 +50,11 @@ void inventoryWindow::on_actionRemove_inventory_triggered()
 
 void inventoryWindow::onItemClicked(const QModelIndex &index)
 {
+    // Disconnect the selectionChanged signal temporarily
+    disconnect(ui->tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &inventoryWindow::onSelectionChanged);
+
     int selectedRow = index.row();
-    currentrow=selectedRow;
+    currentrow = selectedRow;
     qDebug() << "Selected Row: " << selectedRow;
 
     // Get the selection model from the table view
@@ -62,7 +64,7 @@ void inventoryWindow::onItemClicked(const QModelIndex &index)
     selectionModel->clear();
 
     // Select the entire row of the clicked item
-    for(int x=0;x<6;x++){
+    for (int x = 0; x < 6; x++) {
         selectionModel->select(index.siblingAtColumn(x), QItemSelectionModel::Select);
     }
     // Add more columns if needed
@@ -70,7 +72,11 @@ void inventoryWindow::onItemClicked(const QModelIndex &index)
     // If you want to access the data in the clicked row, you can use the model
     QVariant data = modelPTR->data(index, Qt::DisplayRole);
     qDebug() << "Data in clicked item: " << data;
+
+    // Reconnect the selectionChanged signal
+    connect(ui->tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &inventoryWindow::onSelectionChanged);
 }
+
 
 
 void inventoryWindow::on_actionRestock_inventory_triggered()
@@ -113,3 +119,16 @@ void inventoryWindow::on_actionEditInventory_triggered()
     }
 }
 
+void inventoryWindow::onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    // Check if any items are selected
+    if (selected.indexes().isEmpty()) {
+        // No item selected, reset currentrow
+        currentrow = -1;
+    } else {
+        // Get the selected row
+        int selectedRow = selected.indexes().first().row();
+        currentrow = selectedRow;
+        qDebug() << "Selected Row: " << selectedRow;
+    }
+}
