@@ -21,6 +21,8 @@ public:
     PRODUCT operator+(PRODUCT &obj);
     PRODUCT operator-(PRODUCT &obj);
     bool operator==(const PRODUCT& B)const;
+    QString serialize() const;
+    void deserialize(const QString &data);
 private:
     QString productName;
     QString productID;

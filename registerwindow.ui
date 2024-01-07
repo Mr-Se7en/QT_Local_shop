@@ -23,7 +23,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Register</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/Images/Icons/icons8-banana-48.png</normaloff>:/Images/Icons/icons8-banana-48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">

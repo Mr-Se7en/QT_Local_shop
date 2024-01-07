@@ -25,7 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         product.h product.cpp
         customer.h customer.cpp
-        financial_info.h financial_info.cpp
+
 
 
         registerwindow.h registerwindow.cpp registerwindow.ui
@@ -39,6 +39,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         registeradddlg.h registeradddlg.cpp registeradddlg.ui
         registerproductmodel.h registerproductmodel.cpp
         deals_aggregator.h deals_aggregator.cpp
+        customertablemodel.h customertablemodel.cpp
+        SalesTreeModel.h SalesTreeModel.cpp
+        saleswidget.h saleswidget.cpp
+        confirmorderdialog.h confirmorderdialog.cpp confirmorderdialog.ui
+        datamanager.h datamanager.cpp
+        financialreport.h financialreport.cpp financialreport.ui
+
 
 
     )

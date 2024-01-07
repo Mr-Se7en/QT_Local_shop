@@ -35,7 +35,7 @@ InvevntoryAddProductDialog::~InvevntoryAddProductDialog()
 PRODUCT InvevntoryAddProductDialog::getProduct() const
 {
 
-        // Retrieve product information from the dialog's input fields
+        // Retrieve product information
         QString productName = ui->productNameLineEdit->text();
         QString productId = ui->productIdLineEdit->text();
         double price = ui->priceDoubleSpinBox->value();
@@ -59,7 +59,7 @@ void InvevntoryAddProductDialog::accept()
 
         try
         {
-            // Validate the input or perform additional checks if needed
+            // Validate the input
             PRODUCT newProduct = getProduct();
 
             // If the input is valid, accept the dialog and close it
@@ -69,7 +69,7 @@ void InvevntoryAddProductDialog::accept()
         {
             qDebug() << "Exception caught:" << e.what();
 
-            // Display an error message box
+            // Display an error message
             InvevntoryAddProductDialog* nonConstThis = const_cast<InvevntoryAddProductDialog*>(this);
             QMessageBox::critical(nonConstThis, "Input Error", QString("Error: %1").arg(e.what()));
         }
@@ -79,6 +79,5 @@ void InvevntoryAddProductDialog::accept()
 
 void InvevntoryAddProductDialog::reject()
 {
-    // Reject the dialog and close it
     QDialog::reject();
 }

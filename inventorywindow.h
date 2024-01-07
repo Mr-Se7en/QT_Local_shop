@@ -18,7 +18,7 @@ class inventoryWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit inventoryWindow(ProductTableModel *model=nullptr,QWidget *parent = nullptr);
+    explicit inventoryWindow(DataManager *manager,ProductTableModel *model=nullptr,QWidget *parent = nullptr);
     ~inventoryWindow();
 
     void Parent_pointer_set(MainWindow *a){parent_pointer=a;};
@@ -37,11 +37,15 @@ private slots:
 
     void on_actionEditInventory_triggered();
 
+    void on_actionSave_triggered();
+
 private:
     Ui::inventoryWindow *ui;
     MainWindow *parent_pointer=nullptr;
     ProductTableModel *modelPTR=nullptr;
+    DataManager *manager;
     int currentrow=-1;
+
 };
 
 #endif // INVENTORYWINDOW_H

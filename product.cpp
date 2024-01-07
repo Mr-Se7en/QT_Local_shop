@@ -1,4 +1,5 @@
 #include "product.h"
+#include <QStringList>
 
 PRODUCT::PRODUCT(){}
 PRODUCT::PRODUCT(QString name,QString id, double price, int quantity, QString type, QString expDate)
@@ -32,4 +33,23 @@ bool PRODUCT::operator==(const PRODUCT& B)const {
            A.price == B.price &&
            A.productType == B.productType &&
            A.expiration_date == B.expiration_date;
+}
+
+QString PRODUCT::serialize() const {
+    // Serialize product information as a string
+    return productName + "|" + productID + "|" + QString::number(price) + "|" +
+           QString::number(quantity) + "|" + productType + "|" + expiration_date;
+}
+
+void PRODUCT::deserialize(const QString &data) {
+    // Deserialize product information from a string
+    QStringList parts = data.split("|");
+    if (parts.size() == 6) {
+        productName = parts[0];
+        productID = parts[1];
+        price = parts[2].toDouble();
+        quantity = parts[3].toInt();
+        productType = parts[4];
+        expiration_date = parts[5];
+    }
 }

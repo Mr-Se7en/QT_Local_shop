@@ -5,9 +5,9 @@
 
 #include"producttablemodel.h"
 
-inventoryWindow::inventoryWindow(ProductTableModel *model,QWidget *parent) :
+inventoryWindow::inventoryWindow(DataManager *manager,ProductTableModel *model,QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::inventoryWindow),modelPTR(model)
+    ui(new Ui::inventoryWindow),modelPTR(model),manager(manager)
 {
     ui->setupUi(this);
     ui->tableView->setModel(modelPTR);
@@ -23,20 +23,37 @@ inventoryWindow::~inventoryWindow()
 
 void inventoryWindow::closeEvent(QCloseEvent *event)
 {
-    parent_pointer->show();
-    QMainWindow::closeEvent(event);
+        QMessageBox msgBox;
+        msgBox.setText("Do you want to save?");
+        msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::Cancel|QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        int ret = msgBox.exec();
+        switch (ret) {
+        case QMessageBox::Yes:
+            modelPTR->saveToFile(modelPTR->getSavePath());
+            parent_pointer->show();
+            QMainWindow::closeEvent(event);
+            break;
+        case QMessageBox::No:
+            parent_pointer->show();
+            QMainWindow::closeEvent(event);
+            break;
+        case QMessageBox::Cancel:
+            event->ignore();
+            break;
+        }
 }
 
 void inventoryWindow::on_actionAdd_inventory_triggered()
 {
     InvevntoryAddProductDialog addProductDialog(this);
 
-    // Show the dialog as a modal dialog
     if (addProductDialog.exec() == QDialog::Accepted)
     {
-        // User clicked "OK," retrieve the product and add it to the table
+        // User clicked OK
         PRODUCT newProduct = addProductDialog.getProduct();
         modelPTR->addProduct(newProduct);
+        manager->addExpence(newProduct.getPrice()*newProduct.getQuantity());
     }
 }
 
@@ -57,19 +74,16 @@ void inventoryWindow::onItemClicked(const QModelIndex &index)
     currentrow = selectedRow;
     qDebug() << "Selected Row: " << selectedRow;
 
-    // Get the selection model from the table view
+    // Get the selection model
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
 
     // Clear the current selection
     selectionModel->clear();
 
-    // Select the entire row of the clicked item
+    // Select the entire row
     for (int x = 0; x < 6; x++) {
         selectionModel->select(index.siblingAtColumn(x), QItemSelectionModel::Select);
     }
-    // Add more columns if needed
-
-    // If you want to access the data in the clicked row, you can use the model
     QVariant data = modelPTR->data(index, Qt::DisplayRole);
     qDebug() << "Data in clicked item: " << data;
 
@@ -86,17 +100,17 @@ void inventoryWindow::on_actionRestock_inventory_triggered()
         // Retrieve the product from the model
         PRODUCT selectedProduct = modelPTR->getProduct(currentrow);
 
-        // Create and open the restock dialog
+
+        //the restock dialog
         InventoryRestockDlg restockDialog(this);
         if (restockDialog.exec() == QDialog::Accepted)
         {
-            // Get the restock quantity from the dialog
             int restockQuantity = restockDialog.getRestockQuantity();
-
-            // Update the quantity of the selected product
+            manager->addExpence(selectedProduct.getPrice()*restockQuantity);
+            // Update the quantity
             selectedProduct.setQuantity(selectedProduct.getQuantity() + restockQuantity);
 
-            // Update the model or data structure
+            // Update the model
             modelPTR->updateProduct(currentrow, selectedProduct);
         }
     }
@@ -110,10 +124,9 @@ void inventoryWindow::on_actionEditInventory_triggered()
 
     InvevntoryAddProductDialog addProductDialog(selectedProduct,this);
 
-    // Show the dialog as a modal dialog
     if (addProductDialog.exec() == QDialog::Accepted)
     {
-        // User clicked "OK," retrieve the product and add it to the table
+        // User clicked OK
         PRODUCT newProduct = addProductDialog.getProduct();
         modelPTR->updateProduct(currentrow,newProduct);
     }
@@ -132,3 +145,23 @@ void inventoryWindow::onSelectionChanged(const QItemSelection &selected, const Q
         qDebug() << "Selected Row: " << selectedRow;
     }
 }
+
+void inventoryWindow::on_actionSave_triggered()
+{
+    bool succ=modelPTR->saveToFile(modelPTR->getSavePath());
+    if(succ)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("save succesfull");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("save failed");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+    }
+}
+

@@ -1,12 +1,14 @@
 #include "registerwindow.h"
+#include "customer.h"
 #include "inventoryrestockdlg.h"
 #include "ui_registerwindow.h"
 
-registerWindow::registerWindow(ProductTableModel *inventory_model,RegisterProductModel *register_model,QWidget *parent):
+registerWindow::registerWindow(CustomerTableModel *customerModelPTR,ProductTableModel *inventory_model,RegisterProductModel *register_model,QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::registerWindow),
     inventory_model(inventory_model),
-    registerPTR(register_model)
+    registerPTR(register_model),
+    customerModelPTR(customerModelPTR)
 {
     ui->setupUi(this);
     ui->tableView->setModel(registerPTR);
@@ -20,13 +22,13 @@ registerWindow::registerWindow(ProductTableModel *inventory_model,RegisterProduc
     connect(dealsAggregator,&DealsAggregator::UpdateProduct,registerPTR,&RegisterProductModel::UpdateProduct);
     connect(this,&registerWindow::EditItem,dealsAggregator,&DealsAggregator::EditItem);
     connect(this,&registerWindow::discard,dealsAggregator,&DealsAggregator::discard);
+    connect(this,&registerWindow::confirmOrder_agg,dealsAggregator,&DealsAggregator::confirmorder);
+    customerDialog=new ConfirmOrderDialog(this);
 }
 
 registerWindow::~registerWindow()
 {
     delete ui;
-//    delete parent_pointer;
-
 }
 void registerWindow::closeEvent(QCloseEvent *event)
 {
@@ -42,19 +44,16 @@ void registerWindow::onItemClicked(const QModelIndex &index)
     currentrow = selectedRow;
     qDebug() << "Selected Row: " << selectedRow;
 
-    // Get the selection model from the table view
+    // Get the selection model
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
 
     // Clear the current selection
     selectionModel->clear();
 
-    // Select the entire row of the clicked item
+    // Select the entire row
     for (int x = 0; x < 6; x++) {
         selectionModel->select(index.siblingAtColumn(x), QItemSelectionModel::Select);
     }
-    // Add more columns if needed
-
-    // If you want to access the data in the clicked row, you can use the model
     QVariant data = registerPTR->data(index, Qt::DisplayRole);
     qDebug() << "Data in clicked item: " << data;
 
@@ -65,9 +64,6 @@ void registerWindow::onItemClicked(const QModelIndex &index)
 
 void registerWindow::on_actionADD_triggered()
 {
-
-
-    // Show the dialog as a modal dialog
     addProductDialog->exec();
 }
 
@@ -83,7 +79,23 @@ void registerWindow::on_actionRemove_triggered()
 
 void registerWindow::on_actionConfirm_order_triggered()
 {
-    emit confirmOrder();
+    {
+        // Set the initial values in the customer dialog
+        customerDialog->setInitialTotalAmount(registerPTR->getTotal());
+        // Check if the user clicked "OK" in the dialog
+        if (customerDialog->exec() == QDialog::Accepted)
+        {
+            // Retrieve the customer information from the dialog
+            CUSTOMER customer = customerDialog->getCustomerInfo();
+            double totalAmount = customerDialog->getTotalAmount();
+            double amountPaid = customerDialog->getAmountPaid();
+            customerModelPTR->addCustomer(customer,totalAmount,amountPaid);
+            emit confirmOrder(customer);
+            emit confirmOrder_agg();
+        }
+    }
+
+
 }
 
 
@@ -94,16 +106,13 @@ void registerWindow::on_actionEdit_triggered()
         // Retrieve the product from the model
         PRODUCT selectedProduct = registerPTR->getProduct(currentrow);
 
-        // Create and open the restock dialog
+        //open the restock dialog
         InventoryRestockDlg restockDialog(this);
         if (restockDialog.exec() == QDialog::Accepted)
         {
             // Get the restock quantity from the dialog
             int resetQuantity = restockDialog.getRestockQuantity();
             emit EditItem(currentrow,selectedProduct,resetQuantity);
-
-            // Update the model or data structure
-//            registerPTR->updateProduct(currentrow, selectedProduct);
         }
     }
     currentrow=-1;
@@ -127,7 +136,6 @@ void registerWindow::on_actionDiscard_triggered()
 {
     QMessageBox msgBox;
     msgBox.setText("Do you want to discard?");
-    //    msgBox.setInformativeText("Do you want to save your changes?");
     msgBox.setStandardButtons(QMessageBox::Yes|QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     int ret = msgBox.exec();

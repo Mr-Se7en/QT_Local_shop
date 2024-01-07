@@ -3,11 +3,13 @@
 
 #include <QMainWindow>
 
+#include "customertablemodel.h"
 #include "deals_aggregator.h"
 #include "mainwindow.h"
 #include "qitemselectionmodel.h"
 #include "registeradddlg.h"
 #include "registerproductmodel.h"
+#include "confirmorderdialog.h"
 
 namespace Ui {
 class registerWindow;
@@ -18,7 +20,7 @@ class registerWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit registerWindow(ProductTableModel *inventory_model=nullptr,RegisterProductModel *register_model=nullptr,QWidget *parent = nullptr);
+    explicit registerWindow(CustomerTableModel *customerModelPTR,ProductTableModel *inventory_model=nullptr,RegisterProductModel *register_model=nullptr,QWidget *parent = nullptr);
     ~registerWindow();
 
     void Parent_pointer_set(MainWindow *a){parent_pointer=a;};
@@ -37,9 +39,10 @@ private slots:
 
 signals:
     void removeitem(int row);
-    void confirmOrder();
+    void confirmOrder(CUSTOMER customer);
     void EditItem(int row,PRODUCT ToBeEdited,int quantity);
     void discard();
+    void confirmOrder_agg();
 private:
     Ui::registerWindow *ui;
     MainWindow *parent_pointer=nullptr;
@@ -47,7 +50,9 @@ private:
     RegisterProductModel *registerPTR;
     DealsAggregator* dealsAggregator;
     RegisterAddDlg *addProductDialog;
+    CustomerTableModel *customerModelPTR;
     int currentrow=-1;
+    ConfirmOrderDialog *customerDialog;
 };
 
 #endif // REGISTERWINDOW_H

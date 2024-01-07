@@ -1,39 +1,10 @@
 #include "registerproductmodel.h"
 
-RegisterProductModel::RegisterProductModel(QObject *parent)
-    : ProductTableModel(parent)
+RegisterProductModel::RegisterProductModel(DataManager *manager,QObject *parent)
+    : ProductTableModel(parent),
+    manager(manager)
 {
 }
-
-//QVariant RegisterProductModel::headerData(int section, Qt::Orientation orientation, int role) const
-//{
-//    // FIXME: Implement me!
-//}
-
-//int RegisterProductModel::rowCount(const QModelIndex &parent) const
-//{
-//    if (parent.isValid())
-//        return 0;
-
-//    // FIXME: Implement me!
-//}
-
-//int RegisterProductModel::columnCount(const QModelIndex &parent) const
-//{
-//    if (parent.isValid())
-//        return 0;
-
-//    // FIXME: Implement me!
-//}
-
-//QVariant RegisterProductModel::data(const QModelIndex &index, int role) const
-//{
-//    if (!index.isValid())
-//        return QVariant();
-
-//    // FIXME: Implement me!
-//    return QVariant();
-//}
 
 void RegisterProductModel::additem(PRODUCT &wantedProduct, int wantedQuantity)
 {
@@ -44,8 +15,16 @@ void RegisterProductModel::removeitem(int row){
     removeProduct(row);
 }
 
-void RegisterProductModel::confirmOrder()
+void RegisterProductModel::confirmOrder(CUSTOMER customer)
 {
+    QDate time=QDate::currentDate();
+    manager->addPurchase(customer.getName(),time,ProductTableModel::getList());
+    double profit=0;
+    for(PRODUCT &product:ProductTableModel::getList())
+    {
+        profit+=product.getPrice()*product.getQuantity();
+    }
+    manager->addIncome(profit);
     productList.clear();
     setProductList(productList);
 }
@@ -55,4 +34,13 @@ void RegisterProductModel::UpdateProduct(PRODUCT toBeUPDATED, int Quantity)
     int index=findProductIndex(toBeUPDATED);
     toBeUPDATED.setQuantity(Quantity);
     updateProduct(index,toBeUPDATED);
+}
+
+double RegisterProductModel::getTotal()
+{   double profit=0;
+    for(PRODUCT &product:ProductTableModel::getList())
+    {
+        profit+=product.getPrice()*product.getQuantity();
+    }
+    return profit;
 }

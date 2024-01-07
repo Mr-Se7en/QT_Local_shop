@@ -23,18 +23,18 @@ void DealsAggregator::addDeal(const PRODUCT &wantedProduct, int wantedQuantity)
                 // If exceeded, set the wanted quantity to the maximum in the inventory
                 existingDeal.wantedQuantity = inventoryQuantity;
 
-                // Notify the user about the limit via QMessageBox
+                // Notify the user
                 QMessageBox::warning(nullptr, "Quantity Exceeded", "The wanted quantity exceeds the available inventory. Set to maximum.");
             }
 
             // Emit the update product signal
             emit UpdateProduct(existingDeal.wanted, existingDeal.wantedQuantity);
 
-            return; // Exit the function since the deal is already in the list
+            return;
         }
     }
 
-    // No duplicate found, add a new deal to the list
+    // No duplicate found
     DealData deal;
     deal.wanted = wantedProduct;
     deal.wantedQuantity = wantedQuantity;
@@ -92,7 +92,7 @@ void DealsAggregator::confirmorder()
         PRODUCT updatedProduct = inventoryModel->getProduct(productIndex);
         updatedProduct.setQuantity(updatedProduct.getQuantity() - deal.wantedQuantity);
 
-        // Check if the quantity is zero, and remove the product if needed
+        // Check if the quantity is zero
         if (updatedProduct.getQuantity() <= 0)
         {
             inventoryModel->removeProduct(productIndex);
@@ -104,8 +104,6 @@ void DealsAggregator::confirmorder()
         }
     }
 }
-
-// Clear the deals vector after confirming
 deals.clear();
 }
 
@@ -117,27 +115,27 @@ deals.removeAt(a);
 void DealsAggregator::EditItem(int row, PRODUCT ToBeEdited, int quantity)
 {
 if (row < 0 || row >= deals.size())
-    return; // Invalid row index
+    return;
 
 DealData &deal = deals[row];
 
-// Find the index of the product in the deal
+//the index of the product in the deal
 int productIndex = -1;
 // Check if the new quantity exceeds the inventory quantity
 int inventoryQuantity = deal.wanted.getQuantity();
 if (quantity > inventoryQuantity)
 {
-    // Set the quantity to the maximum inventory quantity
+    // Set the quantity to the maximum
     quantity = inventoryQuantity;
 
-    // Alert the user (you can replace this with your actual alert mechanism)
+    // Alert the user
     QMessageBox::warning(nullptr, "Warning", "Quantity exceeds inventory quantity. Set to maximum.");
 }
 
 // Update the quantity
 deal.wantedQuantity = quantity;
 
-// Emit the signal with the updated product and quantity
+// Emit the signal
 emit UpdateProduct(ToBeEdited, quantity);
 
 }

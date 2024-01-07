@@ -26,23 +26,19 @@ void RegisterAddDlg::onItemClicked(const QModelIndex &index)
     ui->spinBox->setMaximum(max);
     qDebug() << "Selected Row: " << selectedRow;
 
-    // Get the selection model from the table view
+    // Get the selection model
     QItemSelectionModel *selectionModel = ui->RegisterAddTableView->selectionModel();
 
     // Clear the current selection
     selectionModel->clear();
 
-    // Select the entire row of the clicked item
+    // Select the entire row
     for(int x=0;x<6;x++){
         selectionModel->select(index.siblingAtColumn(x), QItemSelectionModel::Select);
     }
-    // Add more columns if needed
-
-    // If you want to access the data in the clicked row, you can use the model
     QVariant data = modelPTR->data(index, Qt::DisplayRole);
     qDebug() << "Data in clicked item: " << data;
 }
-//RegisterAddDlg* nonConstThis = const_cast<RegisterAddDlg*>(this);
 void RegisterAddDlg::on_pushButton_clicked()
 {
     if (currentrow != (-1) && ui->spinBox->value() != 0)

@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "customertablemodel.h"
+#include "datamanager.h"
 #include "producttablemodel.h"
 #include "registerproductmodel.h"
 #include <QMainWindow>
@@ -35,5 +37,7 @@ private:
     Ui::MainWindow *ui;
     ProductTableModel *inventoryModel;
     RegisterProductModel *registerModel;
+    CustomerTableModel *customerModel;
+    DataManager *manager;
 };
 #endif // MAINWINDOW_H

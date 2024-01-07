@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>98</width>
-    <height>153</height>
+    <width>205</width>
+    <height>255</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Local Shop</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/Images/Icons/icons8-banana-48.png</normaloff>:/Images/Icons/icons8-banana-48.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -50,12 +54,14 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>98</width>
+     <width>205</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

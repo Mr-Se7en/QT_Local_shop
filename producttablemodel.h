@@ -18,6 +18,8 @@ class ProductTableModel : public QAbstractItemModel
 public:
     explicit ProductTableModel(QObject *parent = nullptr);
 
+    QString getSavePath(){return inventory_save_filepath;};
+    void setSavePath(QString);
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
@@ -37,16 +39,18 @@ public:
     void addProduct(const PRODUCT &product);
     bool removeProduct(int row);
 
-    void saveToFile(const QString &fileName);
+    bool saveToFile(const QString &fileName);
     void loadFromFile(const QString &fileName);
 
     PRODUCT getProduct(int row) const;
 
     int findProductIndex(const PRODUCT& product)const;
 
+    QVector<PRODUCT> getList(){return productList;};
 
 private:
     QVector<PRODUCT> productList;
+    QString inventory_save_filepath="Inventory2.csv";
 };
 
 #endif // PRODUCTTABLEMODEL_H

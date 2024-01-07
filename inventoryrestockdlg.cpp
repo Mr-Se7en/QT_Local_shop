@@ -23,8 +23,6 @@ int InventoryRestockDlg::getRestockQuantity()
     {
         throw std::invalid_argument("Invalid input. Please check your input fields.");
     }
-
-    // Create and return a new PRODUCT object
     return quantity;
 
 }
@@ -35,7 +33,7 @@ void InventoryRestockDlg::accept()
 
     try
     {
-        // Validate the input or perform additional checks if needed
+        // Validate the input
         int newProduct = getRestockQuantity();
 
         // If the input is valid, accept the dialog and close it
@@ -55,6 +53,5 @@ void InventoryRestockDlg::accept()
 
 void InventoryRestockDlg::reject()
 {
-    // Reject the dialog and close it
     QDialog::reject();
 }

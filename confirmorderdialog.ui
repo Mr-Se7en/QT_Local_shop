@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfirmOrderDialog</class>
+ <widget class="QDialog" name="ConfirmOrderDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>424</width>
+    <height>352</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="TotalAmountPurchasedlabel_7">
+       <property name="text">
+        <string>Total Amount Purchased</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxTotalAmountPurchased"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="TotalPaidlabel_8">
+       <property name="text">
+        <string>Total Paid</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxAmountPaid"/>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="CustomerIDlabel">
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEditId"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="CustomerNamelabel_2">
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEditName"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="CustomerCreditlabel_3">
+       <property name="text">
+        <string>Credit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxCreditAmount"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="CustomerDebitlabel_4">
+       <property name="text">
+        <string>Debit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxDebitAmount"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="CustomerContactlabel_5">
+       <property name="text">
+        <string>Contact</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="lineEditContactNumber"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="CustomerAddresslabel_6">
+       <property name="text">
+        <string>Address</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="lineEditAddress"/>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

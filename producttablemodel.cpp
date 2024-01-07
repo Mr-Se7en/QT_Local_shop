@@ -119,16 +119,15 @@ bool ProductTableModel::updateProduct(int row, const PRODUCT &product)
 void ProductTableModel::addProduct(const PRODUCT &product)
 {
     int newRow = rowCount(); // Get the row index for the new product
-    beginInsertRows(QModelIndex(), newRow, newRow); // Notify views that rows are about to be inserted
+    beginInsertRows(QModelIndex(), newRow, newRow);
 
     // Add the new product to the vector
     productList.append(product);
 
-    endInsertRows(); // Notify views that rows have been inserted
+    endInsertRows();
 }
 
-//test start
-void ProductTableModel::saveToFile(const QString &fileName)
+bool ProductTableModel::saveToFile(const QString &fileName)
 {
     QFile file(fileName);
 
@@ -136,7 +135,7 @@ void ProductTableModel::saveToFile(const QString &fileName)
     {
         QTextStream out(&file);
 
-        // Write header if needed
+        // Write header
         out << "Product Name, ID, Price, Quantity, Type, Expiration Date\n";
 
         for (const PRODUCT &product : productList)
@@ -150,17 +149,19 @@ void ProductTableModel::saveToFile(const QString &fileName)
         }
 
         file.close();
+        return true;
     }
     else
     {
         // Handle error opening the file
         qDebug() << "Error opening file for writing:" << file.errorString();
+        return false;
     }
 }
 
 void ProductTableModel::loadFromFile(const QString &fileName)
 {
-    beginResetModel(); // Notify views that a major change is about to occur
+    beginResetModel();
 
     QFile file(fileName);
 
@@ -168,10 +169,10 @@ void ProductTableModel::loadFromFile(const QString &fileName)
     {
         QTextStream in(&file);
 
-        // Assuming the first line is a header
+        // the first line is a header
         QString headerLine = in.readLine(); // Read the header line (if any)
 
-        productList.clear(); // Clear existing data
+        productList.clear();
 
         while (!in.atEnd())
         {
@@ -191,7 +192,7 @@ void ProductTableModel::loadFromFile(const QString &fileName)
 
         file.close();
 
-        endResetModel(); // Notify views that the model has been reset
+        endResetModel();
     }
     else
     {
@@ -206,12 +207,12 @@ bool ProductTableModel::removeProduct(int row)
     if (row < 0 || row >= productList.size())
         return false;
 
-    beginRemoveRows(QModelIndex(), row, row); // Notify views that rows are about to be removed
+    beginRemoveRows(QModelIndex(), row, row);
 
     // Remove the product from the vector
     productList.removeAt(row);
 
-    endRemoveRows(); // Notify views that rows have been removed
+    endRemoveRows();
 
     return true;
 }
@@ -224,8 +225,8 @@ PRODUCT ProductTableModel::getProduct(int row) const
     }
     else
     {
-        // Handle invalid row index
-        return PRODUCT(); // Assuming PRODUCT has a default constructor
+        // return empty PRODUCT
+        return PRODUCT();
     }
 }
 

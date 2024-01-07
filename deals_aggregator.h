@@ -33,7 +33,7 @@ private:
     };
 
     QVector<DealData> deals;
-    ProductTableModel *inventoryModel;// Collection to store all deals
+    ProductTableModel *inventoryModel;
 };
 
 #endif // DEALS_AGGREGATOR_H
