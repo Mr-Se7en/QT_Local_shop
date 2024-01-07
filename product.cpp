@@ -53,3 +53,9 @@ void PRODUCT::deserialize(const QString &data) {
         expiration_date = parts[5];
     }
 }
+
+QDate PRODUCT::String2Date()const
+{
+    QDate dated=QDate::fromString(expiration_date, Qt::ISODate);
+    return dated;
+}

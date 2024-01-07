@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>144</width>
+    <width>164</width>
     <height>72</height>
    </rect>
   </property>
@@ -15,7 +15,11 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QSpinBox" name="quantitySpinBox"/>
+    <widget class="QSpinBox" name="quantitySpinBox">
+     <property name="maximum">
+      <number>99999</number>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

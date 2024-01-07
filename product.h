@@ -1,6 +1,7 @@
 
 #ifndef PRODUCT_H
 #define PRODUCT_H
+#include <QDate>
 #include <QString>
 using namespace Qt;
 class PRODUCT
@@ -23,6 +24,7 @@ public:
     bool operator==(const PRODUCT& B)const;
     QString serialize() const;
     void deserialize(const QString &data);
+    QDate String2Date()const;
 private:
     QString productName;
     QString productID;

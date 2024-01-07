@@ -46,7 +46,7 @@
      <item row="2" column="1">
       <widget class="QDoubleSpinBox" name="priceDoubleSpinBox">
        <property name="maximum">
-        <double>999.990000000000009</double>
+        <double>99999.990000000005239</double>
        </property>
       </widget>
      </item>
@@ -60,7 +60,7 @@
      <item row="3" column="1">
       <widget class="QSpinBox" name="quantitySpinBox">
        <property name="maximum">
-        <number>999</number>
+        <number>99999</number>
        </property>
       </widget>
      </item>
@@ -82,7 +82,21 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="expirationDateLineEdit"/>
+      <widget class="QDateEdit" name="expirationDateLineEdit">
+       <property name="dateTime">
+        <datetime>
+         <hour>19</hour>
+         <minute>30</minute>
+         <second>0</second>
+         <year>2024</year>
+         <month>1</month>
+         <day>1</day>
+        </datetime>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

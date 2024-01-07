@@ -42,6 +42,7 @@ public:
     void saveToFile(const QString &fileName);
     void loadFromFile(const QString &fileName);
     bool addCustomer(const CUSTOMER &newCustomer, double totalAmountPurchased, double amountPaid);
+    CUSTOMER getCustomer(int row) const;
 private:
     QList<CUSTOMER> customerList;
     void adjustDebtAndCredit(CUSTOMER &customer);

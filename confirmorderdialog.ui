@@ -24,7 +24,11 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QDoubleSpinBox" name="doubleSpinBoxTotalAmountPurchased"/>
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxTotalAmountPurchased">
+       <property name="maximum">
+        <double>9999999.990000000223517</double>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="TotalPaidlabel_8">
@@ -34,7 +38,11 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QDoubleSpinBox" name="doubleSpinBoxAmountPaid"/>
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxAmountPaid">
+       <property name="maximum">
+        <double>9999999.990000000223517</double>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -68,7 +76,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QDoubleSpinBox" name="doubleSpinBoxCreditAmount"/>
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxCreditAmount">
+       <property name="maximum">
+        <double>9999999.990000000223517</double>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="CustomerDebitlabel_4">
@@ -78,7 +90,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QDoubleSpinBox" name="doubleSpinBoxDebitAmount"/>
+      <widget class="QDoubleSpinBox" name="doubleSpinBoxDebitAmount">
+       <property name="maximum">
+        <double>9999999.990000000223517</double>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="CustomerContactlabel_5">

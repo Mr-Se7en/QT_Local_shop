@@ -71,7 +71,7 @@ void MainWindow::on_RegisterMenuButton_clicked()
     auto *register_menu=new registerWindow(customerModel,inventoryModel,registerModel);
     register_menu->Parent_pointer_set(this);
     register_menu->show();
-    hide();
+//    hide();
 }
 
 

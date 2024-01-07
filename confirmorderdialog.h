@@ -15,6 +15,7 @@ class ConfirmOrderDialog : public QDialog
 
 public:
     explicit ConfirmOrderDialog(QWidget *parent = nullptr);
+    explicit ConfirmOrderDialog(bool editmode,const CUSTOMER &customer,QWidget *parent = nullptr);
     ~ConfirmOrderDialog();
 
     //retrieve entered customer information

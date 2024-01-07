@@ -299,3 +299,16 @@ void CustomerTableModel::loadFromFile(const QString &fileName)
         qDebug() << "Error opening file for reading:" << file.errorString();
     }
 }
+
+CUSTOMER CustomerTableModel::getCustomer(int row) const
+{
+    if (row >= 0 && row < customerList.size())
+    {
+        return customerList.at(row);
+    }
+    else
+    {
+        // return empty PRODUCT
+        return CUSTOMER();
+    }
+}

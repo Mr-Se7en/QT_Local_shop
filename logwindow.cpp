@@ -1,4 +1,5 @@
 #include "logwindow.h"
+#include "confirmorderdialog.h"
 #include "customertablemodel.h"
 #include "financialreport.h"
 #include "qdatetime.h"
@@ -97,5 +98,17 @@ void LogWindow::on_pushButton_clicked()
 {
     FinancialReport *report=new FinancialReport(manager,this);
     report->exec();
+}
+
+
+void LogWindow::on_toolButton_4_clicked()
+{
+    CUSTOMER toBeEdited=customerTableModelPTR->getCustomer(currentrow);
+    ConfirmOrderDialog *editor=new ConfirmOrderDialog(true,toBeEdited);
+    if (editor->exec() == QDialog::Accepted)
+    {
+       CUSTOMER Customer = editor->getCustomerInfo();
+       customerTableModelPTR->updateCustomer(currentrow,Customer);
+    }
 }
 

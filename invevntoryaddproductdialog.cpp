@@ -22,7 +22,7 @@ InvevntoryAddProductDialog::InvevntoryAddProductDialog(const PRODUCT &product, Q
     ui->priceDoubleSpinBox->setValue(product.getPrice());
     ui->quantitySpinBox->setValue(product.getQuantity());
     ui->productTypeLineEdit->setText(product.getType());
-    ui->expirationDateLineEdit->setText(product.getExpirationDate());
+    ui->expirationDateLineEdit->setDate(product.String2Date());
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &InvevntoryAddProductDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &InvevntoryAddProductDialog::reject);
@@ -41,8 +41,8 @@ PRODUCT InvevntoryAddProductDialog::getProduct() const
         double price = ui->priceDoubleSpinBox->value();
         int quantity = ui->quantitySpinBox->value();
         QString productType = ui->productTypeLineEdit->text();
-        QString expirationDate = ui->expirationDateLineEdit->text();
-
+        QDate expirationDate1 = ui->expirationDateLineEdit->date();
+        QString expirationDate=expirationDate1.toString(Qt::ISODate);
         // Input validation checks
         if (productName.isEmpty() || productId.isEmpty() || quantity <= 0 || price <= 0)
         {

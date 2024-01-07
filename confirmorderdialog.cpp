@@ -1,11 +1,24 @@
 #include "confirmorderdialog.h"
 #include "ui_confirmorderdialog.h"
 
-ConfirmOrderDialog::ConfirmOrderDialog(QWidget *parent) :
+ConfirmOrderDialog::ConfirmOrderDialog(QWidget *parent):
     QDialog(parent),
     ui(new Ui::ConfirmOrderDialog)
 {
     ui->setupUi(this);
+}
+
+ConfirmOrderDialog::ConfirmOrderDialog(bool editmode,const CUSTOMER &customer, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ConfirmOrderDialog)
+{
+    ui->setupUi(this);
+    ui->lineEditName->setText(customer.getName());
+    ui->lineEditId->setText(customer.getId());
+    ui->doubleSpinBoxCreditAmount->setValue(customer.getCreditAmount());
+    ui->doubleSpinBoxDebitAmount->setValue(customer.getDebitAmount());
+    ui->lineEditContactNumber->setText(customer.getContactNumber());
+    ui->lineEditAddress->setText(customer.getAddress());
 }
 
 ConfirmOrderDialog::~ConfirmOrderDialog()

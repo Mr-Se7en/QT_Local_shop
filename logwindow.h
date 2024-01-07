@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_toolButton_4_clicked();
+
 private:
     Ui::LogWindow *ui;
     MainWindow *parent_pointer=nullptr;
